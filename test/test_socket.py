@@ -16,16 +16,20 @@ def recv_data():
     print('tcp recv start:\t\t', get_time())
     # 接收数据:
     buffer = []
-    while True:
-        # 每次最多接收1k字节:
-        d = s.recv(1024)
-        if d:
-            buffer.append(d)
-        else:
-            break
+    # while True:
+    # 每次最多接收1k字节:
+    # print("recv")
+    d = s.recv(1024)
+    # print(d)
+    # if d:
+        # print('-ok')
+    buffer.append(d)
+    # else:
+        # print('eof')
+        # break
     data = b''.join(buffer)
-    print('tcp recv end:\t\t', get_time())
     print(data.decode('utf-8'))
+    print('tcp recv end:\t\t', get_time())
     return data
 
 
