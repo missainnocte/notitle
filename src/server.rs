@@ -27,13 +27,13 @@ pub async fn run_server() {
                         let info = StreamInfo {
                             peer_addr: socket.peer_addr().unwrap(),
                             local_addr: socket.local_addr().unwrap(),
-                            b_data: buf
+                            b_data: buf.clone()
                         };
                         println!(
                             "peer_addr:{}\tlocal_addr:{}\tcontent:{}",
-                            socket.peer_addr().unwrap(),
-                            socket.local_addr().unwrap(),
-                            String::from_utf8_lossy(&buf[..])
+                            info.peer_addr,
+                            info.local_addr,
+                            String::from_utf8_lossy(&info.b_data)
                         );
                         // Copy the data back to socket
                         if socket.write_all(&buf[..n]).await.is_err() {
